@@ -1,4 +1,4 @@
-# 2022-NolFi-SolutionChallenge
-2022 Solution Challenge Repository for Team NolFi
+# 2022-NoLFI-SolutionChallenge
+2022 Solution Challenge Repository for Team NoLFI
 
-* NolFi : No leftover Food ingredients
+* NoLFI : No Leftover Food Ingredients
