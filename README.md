@@ -1,4 +1,4 @@
-# 2022-ShareFi-SolutionChallenge
-2022 Solution Challenge Repository for Team ShareFi
+# 2022-NolFi-SolutionChallenge
+2022 Solution Challenge Repository for Team NolFi
 
-* ShareFi : Share your leftover food ingredients
+* NolFi : No leftover Food ingredients
