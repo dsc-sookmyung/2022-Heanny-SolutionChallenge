@@ -12,21 +12,22 @@
         <activity
             android:name=".StoreClick"
             android:exported="true">
+
+
+        </activity>
+        <activity
+            android:name=".ListClick"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".BuyMain"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".LickClick"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
 
         </activity>
     </application>
