@@ -2,7 +2,7 @@
     <string name="app_name">NoLFI</string>
     <string-array name="write_category">
         <item>Sell</item>
-        <item>Group purchase</item>
+        <item>Group Buying</item>
         <item>Donate</item>
     </string-array>
 </resources>

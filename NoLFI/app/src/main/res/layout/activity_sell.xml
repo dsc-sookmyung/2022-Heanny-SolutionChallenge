@@ -7,13 +7,13 @@
     android:orientation="vertical"
     tools:context=".write.SellActivity">
     <!--toolbar-->
+    <!--글작성 페이지-->
     <include
         android:id="@+id/tapbar"
+        layout="@layout/selltopbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        layout="@layout/selltopbar" />
-    <!--글작성 페이지-->
+        android:layout_height="wrap_content" />
+
     <include
         android:id="@+id/sub_sell"
         layout="@layout/sub_sell"
