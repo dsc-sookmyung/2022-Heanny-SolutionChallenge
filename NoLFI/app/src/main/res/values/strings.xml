@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">NoLFI</string>
+
+    <string name="app_buy1">cheongpa</string>
+    <string name="app_buy2">hyochang</string>
+
+    <string name="main">Main</string>
+    <string name="sell">Sell</string>
+    <string name="my_page">My page</string>
+
+    <string name="cl_buy"> h</string>
+    <string name="cl_store">Profile</string>
+
+    <string name="store_name1">Store Name</string>
+
+    <string name="product_name1">Product name</string>
+    <string name="living_area1">living area</string>
+    <string name="time1">time</string>
+    <string name="product_price1">product price</string>
+
+    <string name="product_category1">category1</string>
+    <string name="product_detail1">This is Nonsan strawberry that I bought at the market this morning!</string>
+
+
 </resources>

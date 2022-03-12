@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/scrab"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/scrab"
+        android:title="." />
+    <item
+        android:id="@+id/productprice"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:title="@string/product_price1"/>
+
+    <item
+        android:id="@+id/third_tab"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/phone"
+        android:title=" ">
+    </item>
+
+</menu>
