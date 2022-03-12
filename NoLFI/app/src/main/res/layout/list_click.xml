@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:maxHeight="200dp"
-            android:contentDescription="TODO" />
+            android:maxHeight="200dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -225,7 +224,8 @@
                     android:adjustViewBounds="true"
                     android:maxWidth="50dp"
                     android:maxHeight="50dp"
-                    android:src="@drawable/phone" />
+                    android:src="@drawable/phone"
+                    android:onClick="list_click_phone" />
 
 
             </LinearLayout>
