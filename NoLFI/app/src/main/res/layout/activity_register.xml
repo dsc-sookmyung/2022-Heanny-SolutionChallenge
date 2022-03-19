@@ -62,11 +62,11 @@
 
         <!--phone number-->
         <EditText
-            android:id="@+id/registerPhoneNum"
+            android:id="@+id/registerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:hint="phone number"
+            android:hint="email"
             android:background="@null"
             android:textSize="19sp"
             android:textColor="@color/black"

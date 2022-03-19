@@ -28,9 +28,10 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;     // 실시간 데이터베이스
 
     private EditText mEtEmail, mEtPwd;          // 회원가입 입력필드
+    private EditText mEtNickname, mEtStoreAddress, mEtStoreCategory;
     private Button mBtnRegister, mBtnImage;     // 회원가입 버튼
 
-    ImageView imageView;
+    ImageView imageViewProfile;
     Uri selectedImageURi;
 
     @Override
@@ -41,17 +42,28 @@ public class RegisterActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("NolFI");
 
-        mEtEmail=findViewById(R.id.registerPhoneNum);
+        mEtEmail=findViewById(R.id.registerEmail);
         mEtPwd=findViewById(R.id.registerPassword);
         mBtnRegister=findViewById(R.id.registerSignUpBtn);
 
         //mBtnImage=findViewById(R.id.register_image_btn);
+        mEtNickname=findViewById(R.id.registerNickname);
+        mEtStoreAddress=findViewById(R.id.registerStoreAddress);
+        mEtStoreCategory=findViewById(R.id.registerStoreCategory);
+
+        imageViewProfile=findViewById(R.id.register_image);
+
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String strEmail=mEtEmail.getText().toString();
                 String strPwd=mEtPwd.getText().toString();
+
+                String strNickname=mEtNickname.getText().toString();
+                String strAddress=mEtStoreAddress.getText().toString();
+                String strStoreCategory=mEtStoreCategory.getText().toString();
+                String strProfile="profile "+strPwd+".jpg";
 
                 // Firebase Auth 진행
                 mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -63,6 +75,11 @@ public class RegisterActivity extends AppCompatActivity {
                             account.setIdToken(firebaseUser.getUid());  // 로그인하면 부여되는 고유값
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(strPwd);
+
+                            account.setAddress(strNickname);
+                            account.setAddress(strAddress);
+                            account.setAddress(strStoreCategory);
+                            // account.setAddress(strStoreCategory);
 
                             // setValue: database에 삽입하는 행위
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
@@ -76,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         //image 클릭시
-        imageView=(ImageView) findViewById(R.id.register_image);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageViewProfile=(ImageView) findViewById(R.id.register_image);
+        imageViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //갤러리에서 이미지 클릭해서 이미지 뷰에 보여주기
@@ -86,20 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-
-        // https://stickode.tistory.com/7
-
-        /*
-        mBtnImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 0);
-            }
-        });
-        */
     }
 
     @Override
@@ -107,22 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null & data.getData() != null) {
             selectedImageURi = data.getData();
-            imageView.setImageURI(selectedImageURi);
+            imageViewProfile.setImageURI(selectedImageURi);
         }
     }
 
-
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode==0) {
-            if (resultCode==RESULT_OK) {
-                // Glide.with(getApplicationContext()).load(data.getData()).override(500, 500).into(imageView);
-                // Glide.with(getApplicationContext())
-            }
-        }
-    }
-    */
 }
