@@ -1,6 +1,9 @@
 package com.example.nolfi;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,20 +15,32 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;         // 파이어베이스 인증
     private DatabaseReference mDatabaseRef;     // 실시간 데이터베이스
+    private FirebaseStorage storage;
 
     private EditText mEtEmail, mEtPwd;          // 회원가입 입력필드
     private EditText mEtNickname, mEtStoreAddress, mEtStoreCategory;
@@ -76,9 +91,9 @@ public class RegisterActivity extends AppCompatActivity {
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(strPwd);
 
-                            account.setAddress(strNickname);
+                            account.setNickname(strNickname);
                             account.setAddress(strAddress);
-                            account.setAddress(strStoreCategory);
+                            account.setCategory(strStoreCategory);
                             // account.setAddress(strStoreCategory);
 
                             // setValue: database에 삽입하는 행위
@@ -113,5 +128,4 @@ public class RegisterActivity extends AppCompatActivity {
             imageViewProfile.setImageURI(selectedImageURi);
         }
     }
-
 }
