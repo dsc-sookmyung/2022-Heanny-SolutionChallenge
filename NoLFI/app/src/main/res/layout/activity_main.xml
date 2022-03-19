@@ -122,7 +122,7 @@
                 android:background="#F7EF8D"
                 android:layout_centerVertical="true"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_baseline_photo_camera_24"/>
+                android:src="@drawable/register_photo_camera"/>
 
             <!--enroll button-->
             <Button

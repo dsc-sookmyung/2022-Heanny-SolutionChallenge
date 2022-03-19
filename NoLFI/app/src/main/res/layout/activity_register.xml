@@ -118,14 +118,23 @@
             android:background="#2FA599"/>
 
         <ImageView
-            android:id="@+id/register_image"
-            android:layout_width="500dp"
-            android:layout_height="200dp"
+            android:id="@id/register_image"
+            android:padding="20dp"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:background="#F7EF8D"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_launcher_background"
-            tools:srcCompat="@tools:sample/avatars"/>
+            android:src="@drawable/register_photo_camera"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="-60dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="profile photo"
+            android:textColor="#000000"
+            android:textSize="20dp" />
 
         <!--store address-->
         <EditText
