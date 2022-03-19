@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
     <!--toolbar-->
-    <!--글작성 페이지-->
     <include
         android:id="@+id/tapbar"
-        layout="@layout/selltopbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        layout="@layout/donatetopbar" />
+    <!--글작성 페이지-->
     <include
-        android:id="@+id/sub_sell"
-        layout="@layout/sub_sell"
+        android:id="@+id/sub_donate"
+        layout="@layout/sub_donate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tapbar"
