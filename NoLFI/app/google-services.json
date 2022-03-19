@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1034053613276",
-    "project_id": "lolfi-jj",
-    "storage_bucket": "lolfi-jj.appspot.com"
+    "project_number": "1075926599159",
+    "project_id": "nolfi-44c7c",
+    "storage_bucket": "nolfi-44c7c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1034053613276:android:aaf41dcf952aaeb37de619",
+        "mobilesdk_app_id": "1:1075926599159:android:e92c857df1af8dd34f1af2",
         "android_client_info": {
           "package_name": "com.example.nolfi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1034053613276-blf9q84oc4o9opm7nqvnqnok1nq9eka4.apps.googleusercontent.com",
+          "client_id": "1075926599159-qs8p31tmvogj8dhu1k8heepdf27sfhor.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC68uI21Aexr0yxVmj0wHy1o-3IRcV-KR0"
+          "current_key": "AIzaSyCGmXVtX1GjPz9G21pYGe5BhdwNfChP2m0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1034053613276-blf9q84oc4o9opm7nqvnqnok1nq9eka4.apps.googleusercontent.com",
+              "client_id": "1075926599159-qs8p31tmvogj8dhu1k8heepdf27sfhor.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

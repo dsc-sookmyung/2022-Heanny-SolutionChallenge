@@ -10,28 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoLFI">
         <activity
-            android:name=".write.NoPermission"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".write.Donate"
-            android:exported="true" >
-        </activity>
-        <activity
-            android:name=".write.GroupPurchase"
-            android:exported="true" />
-        <activity
-            android:name=".write.SellActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
