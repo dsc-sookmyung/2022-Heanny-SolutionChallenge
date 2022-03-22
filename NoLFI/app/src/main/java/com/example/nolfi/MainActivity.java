@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment2()).commit();
         } else if (fragmentNum == 3) { //donate
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment3()).commit();
+        }else if (fragmentNum == 4) { //main page -> mainpage2로 이동
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment3()).commit();
         }
     }
 }
