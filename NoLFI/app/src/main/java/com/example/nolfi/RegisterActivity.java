@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,14 +46,17 @@ import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private int userStatus;                     // store(0) vs customer(1)
     private FirebaseAuth mFirebaseAuth;         // 파이어베이스 인증
     private DatabaseReference mDatabaseRef;     // 실시간 데이터베이스
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
+    private RadioGroup rgUserInfo;              // store vs customer
     private EditText mEtEmail, mEtPwd;          // 회원가입 입력필드
     private EditText mEtNickname, mEtStoreAddress, mEtStoreCategory;
     private Button mBtnRegister, mBtnImage;     // 회원가입 버튼
+    private View viewAddress, viewCategory;
 
     ImageView imageViewProfile;
     Uri selectedImageURi;
@@ -60,11 +66,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        userStatus=2;
         mFirebaseAuth = mFirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("NolFI");
         storage=FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
+        rgUserInfo=findViewById(R.id.radioGroupUserInfo);
         mEtEmail=findViewById(R.id.registerEmail);
         mEtPwd=findViewById(R.id.registerPassword);
         mBtnRegister=findViewById(R.id.registerSignUpBtn);
@@ -75,43 +83,72 @@ public class RegisterActivity extends AppCompatActivity {
         mEtStoreCategory=findViewById(R.id.registerStoreCategory);
 
         imageViewProfile=findViewById(R.id.iv_register_profile);
+        viewAddress=findViewById(R.id.viewAddress);
+        viewCategory=findViewById(R.id.viewCategory);
 
+        rgUserInfo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.radioBtnStore){
+                    userStatus=0;
+                    Toast.makeText(RegisterActivity.this, "store 사용자입니다.", Toast.LENGTH_SHORT).show();
+                    mEtStoreAddress.setVisibility(View.VISIBLE);
+                    viewAddress.setVisibility(View.VISIBLE);
+                    mEtStoreCategory.setVisibility(View.VISIBLE);
+                    viewCategory.setVisibility(View.VISIBLE);
+                } else if (i == R.id.radioBtnCustomer){
+                    userStatus=1;
+                    Toast.makeText(RegisterActivity.this, "customer 사용자입니다.", Toast.LENGTH_SHORT).show();
+                    mEtStoreAddress.setVisibility(View.INVISIBLE);
+                    viewAddress.setVisibility(View.INVISIBLE);
+                    mEtStoreCategory.setVisibility(View.INVISIBLE);
+                    viewCategory.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String strEmail=mEtEmail.getText().toString();
                 String strPwd=mEtPwd.getText().toString();
+                String strEmail=mEtEmail.getText().toString();
 
                 String strNickname=mEtNickname.getText().toString();
                 String strAddress=mEtStoreAddress.getText().toString();
                 String strStoreCategory=mEtStoreCategory.getText().toString();
-                //String strProfile="profile "+strPwd+".jpg";
 
-                // Firebase Auth 진행
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();
-                            UserAccount account=new UserAccount();
-                            account.setIdToken(firebaseUser.getUid());  // 로그인하면 부여되는 고유값
-                            account.setEmailId(firebaseUser.getEmail());
-                            account.setPassword(strPwd);
+                if (userStatus==2) {
+                    Toast.makeText(RegisterActivity.this, "사용자 정보를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Firebase Auth 진행
+                    mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();
+                                UserAccount account=new UserAccount();
+                                account.setIdToken(firebaseUser.getUid());  // 로그인하면 부여되는 고유값
+                                account.setEmailId(firebaseUser.getEmail());
+                                account.setPassword(strPwd);
 
-                            account.setNickname(strNickname);
-                            account.setAddress(strAddress);
-                            account.setCategory(strStoreCategory);
-                            // account.setAddress(strStoreCategory);
-
-                            // setValue: database에 삽입하는 행위
-                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
-                            Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
+                                account.setNickname(strNickname);
+                                if (userStatus==0) {
+                                    account.setAddress(strAddress);
+                                    account.setCategory(strStoreCategory);
+                                    mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).setValue(account);
+                                } else if (userStatus==1) {
+                                    mDatabaseRef.child("UserAccount/Customer").child(firebaseUser.getUid()).setValue(account);
+                                }
+                                Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 
@@ -145,92 +182,52 @@ public class RegisterActivity extends AppCompatActivity {
         pd.show();
 
         final String randomKey= UUID.randomUUID().toString();
-        StorageReference riversRef=storageReference.child("images/profile/"+randomKey);
+        StorageReference riversRef;
 
-        // Create a reference to "mountains.jpg"
-        // StorageReference mountainsRef = storageReference.child("mountains.jpg");
-
-        // Create a reference to 'images/mountains.jpg'
-       //  StorageReference mountainImagesRef = storageReference.child("images/mountains.jpg");
-
-        // While the file names are the same, the references point to different files
-        //mountainsRef.getName().equals(mountainImagesRef.getName());    // true
-        //mountainsRef.getPath().equals(mountainImagesRef.getPath());    // false
-
-        riversRef.putFile(selectedImageURi).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                pd.dismiss();
-                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(getApplicationContext(), "Failed to Upload.", Toast.LENGTH_LONG).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                double progressPercent=(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
-                pd.setMessage("Percentage: "+(int)progressPercent+" %");
-            }
-        });
-    }
-
-    /*
-    public void makeConfirmDialog(){
-        AlertDialog.Builder alt_bld = new AlertDialog.Builder(RegisterActivity.this, R.style.MyAlertDialogStyle);
-        alt_bld.setTitle("작성 완료").setIcon(R.drawable.check_dialog_64).setMessage("글을 게시하시겠습니까?").setCancelable(false).setPositiveButton("네", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //DB에 등록하기
-                final String cu = mAuth.getUid();
-                //1. 사진을 storage에 저장하고 그 url을 알아내야함..
-                String filename = cu + "_" + System.currentTimeMillis();
-                StorageReference storageRef = storage.getReferenceFromUrl("본인의 Firebase 저장소").child("WriteClassImage/" + filename);
-                UploadTask uploadTask;
-
-                Uri file = null;
-                if(flag ==0){
-                    //사진촬영
-                    file = Uri.fromFile(new File(mCurrentPhotoPath));
-                }else if(flag==1){
-                    //앨범선택
-                    file = photoURI;
+        if (userStatus==0) {
+            riversRef=storageReference.child("images/profile/store/"+randomKey);
+            riversRef.putFile(selectedImageURi).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    pd.dismiss();
+                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
                 }
-                uploadTask = storageRef.putFile(file);
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(getApplicationContext(), "Failed to Upload.", Toast.LENGTH_LONG).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    double progressPercent=(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                    pd.setMessage("Percentage: "+(int)progressPercent+" %");
+                }
+            });
+        } else if (userStatus==1) {
+            riversRef=storageReference.child("images/profile/customer/"+randomKey);
+            riversRef.putFile(selectedImageURi).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    pd.dismiss();
+                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(getApplicationContext(), "Failed to Upload.", Toast.LENGTH_LONG).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    double progressPercent=(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                    pd.setMessage("Percentage: "+(int)progressPercent+" %");
+                }
+            });
+        }
 
-                final ProgressDialog progressDialog = new ProgressDialog(WriteClassActivity.this,R.style.MyAlertDialogStyle);
-                progressDialog.setMessage("업로드중...");
-                progressDialog.show();
-
-                // Register observers to listen for when the download is done or if it fails
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        Log.v("알림", "사진 업로드 실패");
-                        exception.printStackTrace();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                        downloadUrl = taskSnapshot.getDownloadUrl();
-                        Log.v("알림", "사진 업로드 성공 " + downloadUrl);
-                    }
-                });
-            }
-        }).setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // 아니오 클릭. dialog 닫기.
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = alt_bld.create();
-        alert.show();
     }
-    */
-
 
 }
