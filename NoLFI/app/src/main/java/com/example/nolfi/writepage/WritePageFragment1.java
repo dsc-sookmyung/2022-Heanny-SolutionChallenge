@@ -126,7 +126,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
 
 
                 // 삭제는 removeValue()
-                mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child(randomKey).updateChildren(sellData);
+                mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("sell/").child(randomKey).updateChildren(sellData);
             }
         });
 
