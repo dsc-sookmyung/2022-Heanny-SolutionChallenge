@@ -136,8 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (userStatus==0) {
                                     account.setAddress(strAddress);
                                     account.setCategory(strStoreCategory);
+                                    account.setGetWhose("store");
                                     mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).setValue(account);
                                 } else if (userStatus==1) {
+                                    account.setGetWhose("customer");
                                     mDatabaseRef.child("UserAccount/Customer").child(firebaseUser.getUid()).setValue(account);
                                 }
                                 Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
