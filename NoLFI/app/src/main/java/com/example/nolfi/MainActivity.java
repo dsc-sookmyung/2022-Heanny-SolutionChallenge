@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.nolfi.mainpage.MainPageFragment1;
+import com.example.nolfi.mainpage.MainPageFragment2;
+import com.example.nolfi.mainpage.MainPageFragment3;
 import com.example.nolfi.mypage.MyPageFragment1;
 import com.example.nolfi.writepage.WritePageFragment1;
 import com.example.nolfi.writepage.WritePageFragment2;
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment2()).commit();
         } else if (fragmentNum == 3) { //donate
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment3()).commit();
+        }else if (fragmentNum == 4) { //main page -> mainpage2로 이동
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MainPageFragment2()).commit();
+        }else if (fragmentNum == 5) { //main page2 -> mainpage3로 이동
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MainPageFragment3()).commit();
         }
     }
 }
