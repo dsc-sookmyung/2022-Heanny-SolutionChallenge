@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-
-            android:id="@+id/item_list"
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical"
-            android:paddingLeft="2dp"
-            android:paddingTop="2dp"
-            android:paddingRight="2dp"
-            android:paddingBottom="2dp"
-
-            android:tag="1">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="2dp"
+        android:tag="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -160,8 +152,7 @@
                         android:maxWidth="50dp"
                         android:maxHeight="50dp"
                         android:src="@drawable/scrab"
-                        android:id="@+id/scrab"
-                        android:onClick="scrabClick"/>
+                        android:id="@+id/scrab"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -172,6 +163,13 @@
                 android:background="#2FA599" />
 
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:text="bookmark page"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</ScrollView>

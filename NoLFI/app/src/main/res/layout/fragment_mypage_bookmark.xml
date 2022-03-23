@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".mypage.MyPage_Bookmark">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7EF8D">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/topbar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/mainfont"
+                android:text="Bookmark"
+                android:textColor="#2FA599"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-
-            android:id="@+id/item_list"
-
+            android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
@@ -23,7 +52,6 @@
             android:paddingTop="2dp"
             android:paddingRight="2dp"
             android:paddingBottom="2dp"
-
             android:tag="1">
 
             <LinearLayout
@@ -160,8 +188,7 @@
                         android:maxWidth="50dp"
                         android:maxHeight="50dp"
                         android:src="@drawable/scrab"
-                        android:id="@+id/scrab"
-                        android:onClick="scrabClick"/>
+                        android:id="@+id/scrab"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -174,4 +201,7 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
