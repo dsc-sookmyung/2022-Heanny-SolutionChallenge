@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.nolfi.mainpage.MainPageFragment1;
+import com.example.nolfi.mainpage.MainPageFragment2;
+import com.example.nolfi.mainpage.MainPageFragment3;
 import com.example.nolfi.mypage.MyPageFragment1;
 import com.example.nolfi.writepage.WritePageFragment1;
+import com.example.nolfi.writepage.WritePageFragment2;
+import com.example.nolfi.writepage.WritePageFragment3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,5 +52,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    //프래그먼트가 바뀔때 작동하게끔 작성한 메서드
+    public void onFragmentChange(int fragmentNum) {
+        //sell
+        if (fragmentNum == 1) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment1()).commit();
+        } else if (fragmentNum == 2) { //group purchase
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment2()).commit();
+        } else if (fragmentNum == 3) { //donate
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new WritePageFragment3()).commit();
+        }else if (fragmentNum == 4) { //main page -> mainpage2로 이동
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MainPageFragment2()).commit();
+        }else if (fragmentNum == 5) { //main page2 -> mainpage3로 이동
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MainPageFragment3()).commit();
+        }
     }
 }

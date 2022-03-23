@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,10 +24,10 @@ import androidx.fragment.app.FragmentManager;
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
 
-public class WritePageFragment1 extends Fragment implements View.OnClickListener{
+public class WritePageFragment3 extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
     MainActivity activity;
-    ImageView img_sell;
+    ImageView img_donate;
     Uri selectedImageURi;
 
     @Override public void onAttach(@NonNull Context context) {
@@ -43,37 +42,44 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_writepage1,container,false);
-        ImageView imageView1=v.findViewById(R.id.down_arrow1);
+        View v=inflater.inflate(R.layout.fragment_writepage3,container,false);
+        ImageView imageView1=v.findViewById(R.id.down_arrow3);
         registerForContextMenu(imageView1);
 
         //imageview eventlistener 연결
-        img_sell=v.findViewById(R.id.sell_product_photo);
-        img_sell.setOnClickListener(this);
+        img_donate=v.findViewById(R.id.donate_product_photo);
+        img_donate.setOnClickListener(this);
         return v;
 
     }
+
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu,
+                                    View v,
+                                    ContextMenu.ContextMenuInfo menuInfo)
+    {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.write_menu, menu);
     }
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            //sell 클릭
+            case R.id.write_menu1:
+                activity.onFragmentChange(1);
+                Toast.makeText(getContext(), "Sell click", Toast.LENGTH_LONG).show();
+                break;
+
             //group purchase 클릭
             case R.id.write_menu2:
                 activity.onFragmentChange(2);
-                Toast.makeText(getContext(), "Group buying click", Toast.LENGTH_LONG).show();
-                break;
-            //donate 클릭
-            case R.id.write_menu3:
-                activity.onFragmentChange(3);
-                Toast.makeText(getContext(), "Donate click", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Group Purchase click", Toast.LENGTH_LONG).show();
                 break;
         }
+
         return super.onContextItemSelected(item);
     }
 
@@ -83,7 +89,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode ==  RESULT_OK && data != null & data.getData() != null) {
             selectedImageURi = data.getData();
-            img_sell.setImageURI(selectedImageURi);
+            img_donate.setImageURI(selectedImageURi);
         }
     }
 

@@ -14,7 +14,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="28dp">
             <ImageView
-                android:id="@+id/sell_product_photo"
+                android:id="@+id/grouppurchase_product_photo"
                 android:layout_marginLeft="20dp"
                 android:layout_width="112dp"
                 android:layout_height="112dp"
