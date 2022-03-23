@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -24,6 +25,14 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
+import com.example.nolfi.UserAccount;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class WritePageFragment1 extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
@@ -32,6 +41,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
     Uri selectedImageURi;
 
     @Override public void onAttach(@NonNull Context context) {
+
         super.onAttach(context);
         //현재 소속된 액티비티를 메인 액티비티로 한다.
         activity = (MainActivity) getActivity();
@@ -40,9 +50,50 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
         super.onDetach();
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        /*DatabaseReference mDatabase;
+        private FirebaseDatabase userStatus;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userStatus=mDatabase.child("NoLFI").child("UserAccount").getDatabase();
+
+        if(userStatus=1);*/
+
+        /*mDatabase.child("NoLFI").child("UserAccount").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("Value is: " + value);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });*/
+
+        //String strWho=mEtPwd.getText().toString();
+        //UserAccount account=new UserAccount();
+        //account.setGetWhose(strWho);
+        //mDatabase.child("NoLFI").child("UserAccount").
+        // 로그인한 유저의 정보 가져오기
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        // 로그인한 유저의 고유 uid 가져오기
+
+        //String check = user != null ? user.getUid() : null;
+
+        //user.get
+
+        //mDatabase.child("NoLFI").child("UserAccount").child()
+
+
+
         View v=inflater.inflate(R.layout.fragment_writepage1,container,false);
         ImageView imageView1=v.findViewById(R.id.down_arrow1);
         registerForContextMenu(imageView1);

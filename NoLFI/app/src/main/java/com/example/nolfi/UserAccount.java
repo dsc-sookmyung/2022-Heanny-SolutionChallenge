@@ -14,8 +14,18 @@ public class UserAccount {
     private String nickname;
     private String address;
     private String category;
+    private String getWhose;
 
     public UserAccount() {}
+
+    public String getGetWhose() {
+        return getWhose;
+    }
+
+    public void setGetWhose(String getWhose) {
+        this.getWhose = getWhose;
+    }
+
 
     public String getIdToken() {
         return idToken;
