@@ -55,44 +55,6 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        /*DatabaseReference mDatabase;
-        private FirebaseDatabase userStatus;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        userStatus=mDatabase.child("NoLFI").child("UserAccount").getDatabase();
-
-        if(userStatus=1);*/
-
-        /*mDatabase.child("NoLFI").child("UserAccount").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("Value is: " + value);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
-            }
-        });*/
-
-        //String strWho=mEtPwd.getText().toString();
-        //UserAccount account=new UserAccount();
-        //account.setGetWhose(strWho);
-        //mDatabase.child("NoLFI").child("UserAccount").
-        // 로그인한 유저의 정보 가져오기
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        // 로그인한 유저의 고유 uid 가져오기
-
-        //String check = user != null ? user.getUid() : null;
-
-        //user.get
-
-        //mDatabase.child("NoLFI").child("UserAccount").child()
-
-
 
         View v=inflater.inflate(R.layout.fragment_writepage1,container,false);
         ImageView imageView1=v.findViewById(R.id.down_arrow1);
@@ -104,6 +66,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
         return v;
 
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
@@ -111,6 +74,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.write_menu, menu);
     }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
