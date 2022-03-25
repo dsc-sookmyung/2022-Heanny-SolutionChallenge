@@ -1,6 +1,10 @@
 package com.example.nolfi.mainpage;
 
+
+import android.content.Intent;
+
 import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
+
 
 public class MainPageFragment1  extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
@@ -32,14 +37,17 @@ public class MainPageFragment1  extends Fragment implements View.OnClickListener
         super.onDetach();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v=inflater.inflate(R.layout.fragment_mainpage1,container,false);
         list_item=v.findViewById(R.id.item_list);
         imageview = v.findViewById(R.id.scrab);
         imageview.setOnClickListener(this);
         list_item.setOnClickListener(this);
+
         return v;
     }
 
@@ -62,4 +70,5 @@ public class MainPageFragment1  extends Fragment implements View.OnClickListener
             }
         }
     }
+
 }

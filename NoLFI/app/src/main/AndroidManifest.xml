@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoLFI">
+        <activity android:name=".mypage.Mypage_Product"></activity>
+        <activity android:name=".mypage.MyPage_Bookmark"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
