@@ -87,7 +87,7 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
 
 
         // enroll 버튼
-        Button btn_sell_enroll=(Button)v.findViewById(R.id.enroll_button);
+        Button btn_sell_enroll=(Button)v.findViewById(R.id.sell_enroll_button);
         btn_sell_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,17 +102,6 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
                 String strSellingPrice=mEtSellingPrice.getText().toString();
                 String strLocation=mEtLocation.getText().toString();
                 String strContact=mEtContact.getText().toString();
-
-                /*
-                SellData sellData=new SellData();
-                sellData.setProductName(strProductName);
-                sellData.setCategory(strCategory);
-                sellData.setPurchaseDate(strPurchaseDate);
-                sellData.setExpirationDate(strExpirationDate);
-                sellData.setSellingPrice(strSellingPrice);
-                sellData.setLocation(strLocation);
-                sellData.setContact(strContact);
-                */
 
                 HashMap sellData = new HashMap<>();
                 sellData.put("product name", strProductName);
