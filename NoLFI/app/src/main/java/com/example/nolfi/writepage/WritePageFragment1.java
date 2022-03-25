@@ -2,6 +2,7 @@ package com.example.nolfi.writepage;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,15 +28,22 @@ import androidx.fragment.app.FragmentManager;
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
 import com.example.nolfi.UserAccount;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class WritePageFragment1 extends Fragment implements View.OnClickListener{
+public class WritePageFragment1 extends Fragment{
     //메인 액티비티 객체 선언
     MainActivity activity;
     ImageView img_sell;
@@ -43,6 +51,9 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
 
     private EditText mEtProductName, mEtCategory, mEtPurchaseDate, mEtExpirationDate;
     private EditText mEtSellingPrice, mEtLocation, mEtContact;
@@ -72,10 +83,12 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
 
         mFirebaseAuth = mFirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("NolFI");
+        storage=FirebaseStorage.getInstance();
+        storageReference=storage.getReference();
 
         //imageview eventlistener 연결
         img_sell=v.findViewById(R.id.sell_product_photo);
-        img_sell.setOnClickListener(this);
+        //img_sell.setOnClickListener(this);
 
         mEtProductName=v.findViewById(R.id.sell_product_name);
         mEtCategory=v.findViewById(R.id.sell_product_category);
@@ -119,12 +132,22 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
             }
         });
 
-        return v;
+        //image 클릭시
+        img_sell=(ImageView) v.findViewById(R.id.sell_product_photo);
+        img_sell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //갤러리에서 이미지 클릭해서 이미지 뷰에 보여주기
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/");
+                startActivityForResult(intent,1);
+            }
+        });
 
+        return v;
     }
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.write_menu, menu);
@@ -153,9 +176,30 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
         if (requestCode == 1 && resultCode ==  RESULT_OK && data != null & data.getData() != null) {
             selectedImageURi = data.getData();
             img_sell.setImageURI(selectedImageURi);
+            uploadPicture();
         }
     }
 
+    private void uploadPicture() {
+
+        final String randomKey= UUID.randomUUID().toString();
+        StorageReference riversRef;
+
+        riversRef=storageReference.child("images/product/sell/"+randomKey);
+        riversRef.putFile(selectedImageURi).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), "Failed to Upload.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    /*
     @Override
     public void onClick(View view) {
 
@@ -164,4 +208,6 @@ public class WritePageFragment1 extends Fragment implements View.OnClickListener
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/");
             startActivityForResult(intent, 1);
     }
+    */
+
 }
