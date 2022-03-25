@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,12 +25,25 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class WritePageFragment2 extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
     MainActivity activity;
     ImageView img_grouppurchase;
     Uri selectedImageURi;
+
+    private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseRef;
+
+    private EditText mEtGroupProductName, mEtGroupProductCategory, mEtGroupProductNumber, mEtGroupDeadline;
+    private EditText mEtGroupProductCost, mEtGroupProductLocation, mEtGroupProductContact, mEtGroupProductDescription;
 
     @Override public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -46,27 +61,70 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
         ImageView imageView1=v.findViewById(R.id.down_arrow2);
         registerForContextMenu(imageView1);
 
+        mFirebaseAuth = mFirebaseAuth.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("NolFI");
+
         //imageview eventlistener 연결
         img_grouppurchase=v.findViewById(R.id.grouppurchase_product_photo);
         img_grouppurchase.setOnClickListener(this);
-        return v;
 
+        mEtGroupProductName=v.findViewById(R.id.group_purchase_product_name);
+        mEtGroupProductCategory=v.findViewById(R.id.group_purchase_product_category);
+        mEtGroupProductNumber=v.findViewById(R.id.group_purchase_number);
+        mEtGroupDeadline=v.findViewById(R.id.group_purchase_deadline);
+
+        mEtGroupProductCost=v.findViewById(R.id.group_purchase_product_cost);
+        mEtGroupProductLocation=v.findViewById(R.id.group_purchase_product_location);
+        mEtGroupProductContact=v.findViewById(R.id.group_purchase_product_contact);
+        mEtGroupProductDescription=v.findViewById(R.id.group_purchase_detailed_description);
+
+        // enroll 버튼
+        Button btn_sell_enroll=(Button)v.findViewById(R.id.group_purchase_enroll_button);
+        btn_sell_enroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();
+                final String randomKey= UUID.randomUUID().toString();
+
+                String strProductName=mEtGroupProductName.getText().toString();
+                String strCategory=mEtGroupProductCategory.getText().toString();
+                String strNumber=mEtGroupProductNumber.getText().toString();
+                String strDeadline=mEtGroupDeadline.getText().toString();
+
+                String strProductCost=mEtGroupProductCost.getText().toString();
+                String strLocation=mEtGroupProductLocation.getText().toString();
+                String strContact=mEtGroupProductContact.getText().toString();
+                String strProductDescription=mEtGroupProductDescription.getText().toString();
+
+                HashMap groupPurchaseData = new HashMap<>();
+                groupPurchaseData.put("product name", strProductName);
+                groupPurchaseData.put("category", strCategory);
+                groupPurchaseData.put("product number", strNumber);
+                groupPurchaseData.put("deadline", strDeadline);
+
+                groupPurchaseData.put("product cost", strProductCost);
+                groupPurchaseData.put("location", strLocation);
+                groupPurchaseData.put("contact", strContact);
+                groupPurchaseData.put("detailed description", strProductDescription);
+
+
+                // 삭제는 removeValue()
+                mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("groupPurchase/").child(randomKey).updateChildren(groupPurchaseData);
+            }
+        });
+
+        return v;
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu,
-                                    View v,
-                                    ContextMenu.ContextMenuInfo menuInfo)
-    {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.write_menu, menu);
     }
 
-    public boolean onContextItemSelected(MenuItem item)
-    {
-        switch(item.getItemId())
-        {
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
             //sell 클릭
             case R.id.write_menu1:
                 activity.onFragmentChange(1);
@@ -79,7 +137,6 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
                 Toast.makeText(getContext(), "Donate click", Toast.LENGTH_LONG).show();
                 break;
         }
-
         return super.onContextItemSelected(item);
     }
 
