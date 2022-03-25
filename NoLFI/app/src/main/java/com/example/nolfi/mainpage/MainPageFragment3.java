@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,12 +21,13 @@ import com.example.nolfi.mainpage.storeclick.frag_soldout;
 import com.example.nolfi.mainpage.storeclick.frag_trading;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainPageFragment3 extends Fragment{
+public class MainPageFragment3 extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
     MainActivity activity;
     TabLayout tabLayout;
     ViewPager viewPager;
     frag_adapter adapter;
+    ImageView backarrow;
 
     @Override public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -44,6 +47,8 @@ public class MainPageFragment3 extends Fragment{
         tabLayout=v.findViewById(R.id.tabs);
         viewPager=v.findViewById(R.id.view_pager);
         adapter=new frag_adapter(activity.getSupportFragmentManager(),1);
+        backarrow=v.findViewById(R.id.arrow_back3);
+        backarrow.setOnClickListener(this);
 
         //FragmentAdapter에 컬렉션 담기
         adapter.addFragment(new frag_all());
@@ -61,5 +66,14 @@ public class MainPageFragment3 extends Fragment{
         tabLayout.getTabAt(2).setText("Soldout");
 
         return v;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.arrow_back3:
+                //activity.onFragmentChange(1);
+                break;
+        }
     }
 }

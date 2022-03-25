@@ -25,6 +25,7 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
     boolean i=true;
     ImageView imageview;
     LinearLayout layout_store;
+    ImageView backarrow;
 
     @Override public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -44,9 +45,11 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
         layout_store.setOnClickListener(this);
         imageview=v.findViewById(R.id.icon_phone);
         imageview.setOnClickListener(this);
+
+        backarrow=v.findViewById(R.id.arrow_back2);
+        backarrow.setOnClickListener(this);
         return v;
     }
-
     @SuppressLint("ResourceType")
     public void onClick(View v){
         switch (v.getId()){
@@ -55,18 +58,20 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
                 activity.onFragmentChange(5);
             }
             //전화모양 클릭시 -> 다이얼로그창 띄움
-            case R.id.icon_phone:{
-                if (count % 2 == 0){
-                    count=1;
+            case R.id.icon_phone: {
+                if (count % 2 == 0) {
+                    count = 1;
                     // 데이터를 다이얼로그로 보내는 코드
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("Contact").setMessage("ex) 010-111-111") //회원가입 전화번호로 바꾸기
-                            .setPositiveButton("ok", (dialog, which) -> {} );
+                            .setPositiveButton("ok", (dialog, which) -> {
+                            });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
-
                 }
-
+            }
+            case R.id.arrow_back2: {
+                //activity.onFragmentChange(1);
             }
         }
     }
