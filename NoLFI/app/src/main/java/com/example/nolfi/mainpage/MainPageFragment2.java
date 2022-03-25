@@ -1,5 +1,6 @@
 package com.example.nolfi.mainpage;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
     //메인 액티비티 객체 선언
     MainActivity activity;
 
+    int count; //dialog 띄우는 횟수 제한 기준 변수
     boolean i=true;
     ImageView imageview;
     LinearLayout layout_store;
@@ -37,6 +39,7 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_mainpage2,container,false);
+        count=0;
         layout_store=v.findViewById(R.id.layout_store);
         layout_store.setOnClickListener(this);
         imageview=v.findViewById(R.id.icon_phone);
@@ -44,6 +47,7 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
         return v;
     }
 
+    @SuppressLint("ResourceType")
     public void onClick(View v){
         switch (v.getId()){
             //fragment 변환 (layout_store 클릭시)
@@ -52,13 +56,17 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
             }
             //전화모양 클릭시 -> 다이얼로그창 띄움
             case R.id.icon_phone:{
-                // 데이터를 다이얼로그로 보내는 코드
-                Bundle args = new Bundle();
-                args.putString("key", "value");
-                FragmentDialog dialog = new FragmentDialog();
-                dialog.setArguments(args); // 데이터 전달
-                dialog.show(getActivity().getSupportFragmentManager(),"tag");
-                break;
+                if (count % 2 == 0){
+                    count=1;
+                    // 데이터를 다이얼로그로 보내는 코드
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Contact").setMessage("ex) 010-111-111") //회원가입 전화번호로 바꾸기
+                            .setPositiveButton("ok", (dialog, which) -> {} );
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                }
+
             }
         }
     }
