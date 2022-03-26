@@ -25,15 +25,20 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class WritePageFragment2 extends Fragment implements View.OnClickListener{
+public class WritePageFragment2 extends Fragment {
     //메인 액티비티 객체 선언
     MainActivity activity;
     ImageView img_grouppurchase;
@@ -41,6 +46,8 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
     private EditText mEtGroupProductName, mEtGroupProductCategory, mEtGroupProductNumber, mEtGroupDeadline;
     private EditText mEtGroupProductCost, mEtGroupProductLocation, mEtGroupProductContact, mEtGroupProductDescription;
@@ -63,10 +70,12 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
 
         mFirebaseAuth = mFirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("NolFI");
+        storage=FirebaseStorage.getInstance();
+        storageReference=storage.getReference();
 
         //imageview eventlistener 연결
-        img_grouppurchase=v.findViewById(R.id.grouppurchase_product_photo);
-        img_grouppurchase.setOnClickListener(this);
+        // img_grouppurchase=v.findViewById(R.id.grouppurchase_product_photo);
+        // img_grouppurchase.setOnClickListener(this);
 
         mEtGroupProductName=v.findViewById(R.id.group_purchase_product_name);
         mEtGroupProductCategory=v.findViewById(R.id.group_purchase_product_category);
@@ -79,8 +88,8 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
         mEtGroupProductDescription=v.findViewById(R.id.group_purchase_detailed_description);
 
         // enroll 버튼
-        Button btn_sell_enroll=(Button)v.findViewById(R.id.group_purchase_enroll_button);
-        btn_sell_enroll.setOnClickListener(new View.OnClickListener() {
+        Button btn_group_purchase_enroll=(Button)v.findViewById(R.id.group_purchase_enroll_button);
+        btn_group_purchase_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();
@@ -110,6 +119,17 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
 
                 // 삭제는 removeValue()
                 mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("groupPurchase/").child(randomKey).updateChildren(groupPurchaseData);
+            }
+        });
+
+        img_grouppurchase=(ImageView) v.findViewById(R.id.grouppurchase_product_photo);
+        img_grouppurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //갤러리에서 이미지 클릭해서 이미지 뷰에 보여주기
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/");
+                startActivityForResult(intent,1);
             }
         });
 
@@ -147,9 +167,31 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
         if (requestCode == 1 && resultCode ==  RESULT_OK && data != null & data.getData() != null) {
             selectedImageURi = data.getData();
             img_grouppurchase.setImageURI(selectedImageURi);
+            uploadPicture();
         }
     }
 
+    private void uploadPicture() {
+
+        final String randomKey= UUID.randomUUID().toString();
+        StorageReference riversRef;
+
+        riversRef=storageReference.child("images/product/group_purchase/"+randomKey);
+        riversRef.putFile(selectedImageURi).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), "Failed to Upload.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    /*
     @Override
     public void onClick(View view) {
             //갤러리에서 이미지 클릭해서 이미지 뷰에 보여주기
@@ -157,4 +199,5 @@ public class WritePageFragment2 extends Fragment implements View.OnClickListener
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/");
             startActivityForResult(intent, 1);
     }
+   */
 }

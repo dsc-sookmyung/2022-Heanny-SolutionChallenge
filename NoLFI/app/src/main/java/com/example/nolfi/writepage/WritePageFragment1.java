@@ -87,7 +87,7 @@ public class WritePageFragment1 extends Fragment{
         storageReference=storage.getReference();
 
         //imageview eventlistener 연결
-        img_sell=v.findViewById(R.id.sell_product_photo);
+        // img_sell=v.findViewById(R.id.sell_product_photo);
         //img_sell.setOnClickListener(this);
 
         mEtProductName=v.findViewById(R.id.sell_product_name);
