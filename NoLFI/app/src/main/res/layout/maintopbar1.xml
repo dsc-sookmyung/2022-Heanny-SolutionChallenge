@@ -12,30 +12,12 @@
             android:id="@+id/topbar_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/mainfont"
-            android:text="cheongpa"
+            android:text="main page"
             android:textColor="#2FA599"
             android:textSize="30sp"
             android:textStyle="bold" />
-        <ImageView
-            android:id="@+id/down_arrow1"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="-20dp"
-            android:layout_toRightOf="@+id/topbar_name"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_arrow_drop_down_24" />
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="130dp"
-            android:layout_toRightOf="@+id/down_arrow1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_search_24" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -6,19 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include
-        android:id="@+id/main_tapbar"
-        layout="@layout/maintopbar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <include
         android:id="@+id/main_content"
         layout="@layout/mainpage_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/main_tapbar"
-        tools:layout_editor_absoluteX="0dp" />
-
+        android:layout_height="wrap_content"/>
     <include
         app:layout_constraintTop_toBottomOf="@+id/main_content"
         android:id="@+id/main_content2"

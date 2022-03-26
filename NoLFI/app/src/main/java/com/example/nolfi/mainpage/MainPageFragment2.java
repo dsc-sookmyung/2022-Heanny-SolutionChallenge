@@ -63,7 +63,7 @@ public class MainPageFragment2 extends Fragment implements View.OnClickListener{
                     count = 1;
                     // 데이터를 다이얼로그로 보내는 코드
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Contact").setMessage("ex) 010-111-111") //회원가입 전화번호로 바꾸기
+                    builder.setTitle("Contact").setMessage("02-123-4567")
                             .setPositiveButton("ok", (dialog, which) -> {
                             });
                     AlertDialog alertDialog = builder.create();

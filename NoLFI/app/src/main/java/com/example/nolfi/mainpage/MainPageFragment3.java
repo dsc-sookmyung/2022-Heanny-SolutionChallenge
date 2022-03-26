@@ -61,9 +61,9 @@ public class MainPageFragment3 extends Fragment implements View.OnClickListener{
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText("All");
-        tabLayout.getTabAt(1).setText("Trading");
-        tabLayout.getTabAt(2).setText("Soldout");
+        tabLayout.getTabAt(0).setText("sell");
+        tabLayout.getTabAt(1).setText("group buying");
+        tabLayout.getTabAt(2).setText("donate");
 
         return v;
     }

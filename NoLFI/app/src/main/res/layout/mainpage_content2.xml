@@ -10,7 +10,8 @@
     android:paddingBottom="2dp">
 
     <ImageView
-        android:src="@drawable/product1"
+        android:id="@+id/product_image_detail"
+        android:src="@drawable/strawberry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -25,9 +26,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:onClick="displayStoreClick">
 
         <ImageView
+            android:id="@+id/store_profile_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -49,14 +52,16 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:text="store_name1"
+                android:id="@+id/store_name_detail"
+                android:text="NolFi's Store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
                 android:textSize="17sp" />
 
             <TextView
-                android:text="living_area1"
+                android:id="@+id/store_area_detail"
+                android:text="chungpa-dong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -87,7 +92,8 @@
             >
 
             <TextView
-                android:text="product_name1"
+                android:id="@+id/product_name_detail"
+                android:text="Fresh Strawberries!"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -98,7 +104,8 @@
                 android:layout_marginRight="10dp" />
 
             <TextView
-                android:text="product_category1"
+                android:id="@+id/product_category_detail"
+                android:text="sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -107,18 +114,8 @@
                 android:layout_marginRight="10dp" />
 
             <TextView
-                android:text="time1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="17sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-
-
-            <TextView
-                android:text="product_detail1"
+                android:id="@+id/content_detail"
+                android:text="This is Nonsan strawberry that I bought at the market this morning! I bought too much, so I'll sell 1kg."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -166,12 +163,13 @@
                 android:src="@drawable/scrab" />
 
             <TextView
+                android:id="@+id/product_price_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:text="product_price1"
+                android:text="15000 won"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -182,6 +180,7 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:onClick="list_click_phone"
                 android:id="@+id/icon_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
