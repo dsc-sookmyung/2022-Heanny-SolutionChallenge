@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -28,6 +29,13 @@ import androidx.fragment.app.FragmentManager;
 import com.example.nolfi.MainActivity;
 import com.example.nolfi.R;
 import com.example.nolfi.UserAccount;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
+
+import com.google.firebase.database.ValueEventListener;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,6 +47,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -66,6 +75,7 @@ public class WritePageFragment1 extends Fragment{
     * */
 
     @Override public void onAttach(@NonNull Context context) {
+
         super.onAttach(context);
         //현재 소속된 액티비티를 메인 액티비티로 한다.
         activity = (MainActivity) getActivity();
@@ -74,9 +84,12 @@ public class WritePageFragment1 extends Fragment{
         super.onDetach();
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v=inflater.inflate(R.layout.fragment_writepage1,container,false);
         ImageView imageView1=v.findViewById(R.id.down_arrow1);
         registerForContextMenu(imageView1);
@@ -146,12 +159,14 @@ public class WritePageFragment1 extends Fragment{
 
         return v;
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.write_menu, menu);
     }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {

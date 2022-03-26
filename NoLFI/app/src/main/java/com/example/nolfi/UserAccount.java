@@ -19,6 +19,7 @@ public class UserAccount {
     // public Boolean getStatus() { return status; }
     // public void setStatus(Boolean status) { this.status = status; }
 
+
     public UserAccount() {}
 
     public String getGetWhose() {
@@ -28,6 +29,7 @@ public class UserAccount {
     public void setGetWhose(String getWhose) {
         this.getWhose = getWhose;
     }
+
 
     public String getIdToken() {
         return idToken;
