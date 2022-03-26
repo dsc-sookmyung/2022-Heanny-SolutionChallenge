@@ -44,6 +44,8 @@ public class WritePageFragment2 extends Fragment {
     ImageView img_grouppurchase;
     Uri selectedImageURi;
 
+    private CustomDialog customDialog;
+
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
     private FirebaseStorage storage;
@@ -116,9 +118,22 @@ public class WritePageFragment2 extends Fragment {
                 groupPurchaseData.put("contact", strContact);
                 groupPurchaseData.put("detailed description", strProductDescription);
 
-
                 // 삭제는 removeValue()
                 mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("groupPurchase/").child(randomKey).updateChildren(groupPurchaseData);
+
+                customDialog = new CustomDialog(getContext(),"공동 구매글 작성이\n완료되었습니다.");
+                customDialog.show();
+
+                mEtGroupProductName.setText("");
+                mEtGroupProductCategory.setText("");
+                mEtGroupProductNumber.setText("");
+                mEtGroupDeadline.setText("");
+
+                mEtGroupProductCost.setText("");
+                mEtGroupProductLocation.setText("");
+                mEtGroupProductContact.setText("");
+                mEtGroupProductDescription.setText("");
+                img_grouppurchase.setImageURI(null);
             }
         });
 

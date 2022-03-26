@@ -39,10 +39,13 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class WritePageFragment3 extends Fragment {
+
     //메인 액티비티 객체 선언
     MainActivity activity;
     ImageView img_donate;
     Uri selectedImageURi;
+
+    private CustomDialog customDialog;
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
@@ -113,9 +116,24 @@ public class WritePageFragment3 extends Fragment {
                 donateData.put("contact", strContact);
                 donateData.put("detailed description", strDescription);
 
-
                 // 삭제는 removeValue()
                 mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("donate/").child(randomKey).updateChildren(donateData);
+
+                customDialog = new CustomDialog(getContext(),"기부글 작성이\n완료되었습니다.");
+                customDialog.show();
+
+                mEtDonateProductName.setText("");
+                mEtDonateProductCategory.setText("");
+                mEtDonatePurchaseDate.setText("");
+                mEtDonateExpirationDate.setText("");
+
+                mEtDonateProductLocation.setText("");
+                mEtDonateProductContact.setText("");
+                mEtDonateProductDescription.setText("");
+
+                img_donate.setImageURI(null);
+
+                // mEtContact.setText("");
             }
         });
 
@@ -130,9 +148,7 @@ public class WritePageFragment3 extends Fragment {
                 startActivityForResult(intent,1);
             }
         });
-
         return v;
-
     }
 
     @Override

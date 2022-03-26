@@ -63,9 +63,10 @@ public class WritePageFragment1 extends Fragment{
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
-
     private EditText mEtProductName, mEtCategory, mEtPurchaseDate, mEtExpirationDate;
-    private EditText mEtSellingPrice, mEtLocation, mEtContact;
+    private EditText mEtProductionCost, mEtSellingPrice, mEtLocation, mEtContact, mEtProductDescription;
+
+    private CustomDialog customDialog;
 
     /*
     * // 로그인한 유저의 정보 가져오기
@@ -83,7 +84,6 @@ public class WritePageFragment1 extends Fragment{
     @Override public void onDetach() {
         super.onDetach();
     }
-
 
 
     @Nullable
@@ -107,9 +107,12 @@ public class WritePageFragment1 extends Fragment{
         mEtCategory=v.findViewById(R.id.sell_product_category);
         mEtPurchaseDate=v.findViewById(R.id.sell_product_purchasedate);
         mEtExpirationDate=v.findViewById(R.id.sell_product_expirationdate);
+
+        mEtProductionCost=v.findViewById(R.id.sell_product_productioncost);
         mEtSellingPrice=v.findViewById(R.id.sell_product_sellingprice);
         mEtLocation=v.findViewById(R.id.sell_product_location);
         mEtContact=v.findViewById(R.id.sell_product_contact);
+        mEtProductDescription=v.findViewById(R.id.sell_detail_description);
 
 
         // enroll 버튼
@@ -125,6 +128,8 @@ public class WritePageFragment1 extends Fragment{
 
                 String strPurchaseDate=mEtPurchaseDate.getText().toString();
                 String strExpirationDate=mEtExpirationDate.getText().toString();
+
+                String strProductPrice=mEtProductionCost.getText().toString();
                 String strSellingPrice=mEtSellingPrice.getText().toString();
                 String strLocation=mEtLocation.getText().toString();
                 String strContact=mEtContact.getText().toString();
@@ -135,13 +140,29 @@ public class WritePageFragment1 extends Fragment{
                 sellData.put("purchase date", strPurchaseDate);
                 sellData.put("expiration date", strExpirationDate);
 
+                sellData.put("product price", strProductPrice);
                 sellData.put("selling price", strSellingPrice);
                 sellData.put("location", strLocation);
                 sellData.put("contact", strContact);
 
-
                 // 삭제는 removeValue()
                 mDatabaseRef.child("UserAccount/Store").child(firebaseUser.getUid()).child("sell/").child(randomKey).updateChildren(sellData);
+
+                customDialog = new CustomDialog(getContext(),"판매글 작성이\n완료되었습니다.");
+                customDialog.show();
+
+                mEtProductName.setText("");
+                mEtCategory.setText("");
+                mEtPurchaseDate.setText("");
+                mEtExpirationDate.setText("");
+
+                mEtProductionCost.setText("");
+                mEtSellingPrice.setText("");
+                mEtLocation.setText("");
+                mEtContact.setText("");
+                mEtProductDescription.setText("");
+                img_sell.setImageURI(null);
+                img_sell.setImageResource(R.drawable.ic_baseline_photo_camera_24);
             }
         });
 
