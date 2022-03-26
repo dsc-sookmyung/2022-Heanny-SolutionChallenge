@@ -10,20 +10,19 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.nolfi.LoginActivity;
 import com.example.nolfi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 public class MyPageFragment1 extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,11 +30,21 @@ public class MyPageFragment1 extends Fragment {
 
         Button bookButton = (Button)v.findViewById(R.id.btn_bookmark);
         Button productButton = (Button)v.findViewById(R.id.btn_productlist);
+        Button logoutBtn=(Button)v.findViewById(R.id.btn_my_page_logout);
 
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MyPage_Bookmark.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +74,6 @@ public class MyPageFragment1 extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), MyPage_Customer.class);
-
                                 startActivity(intent);
                             }
                         });
@@ -75,23 +83,20 @@ public class MyPageFragment1 extends Fragment {
                         productButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                FirebaseAuth.getInstance().signOut();
                                 Intent intent = new Intent(getActivity(), Mypage_Product.class);
                                 startActivity(intent);
                             }
                         });
                     }
-
                 }
             }
         });
-
 
         Log.d("rrrr","who"+whos);
         Log.d("rrrr","who1"+whos1);
         Log.d("rrrr","who2"+whos2);
 
-
-
         return v;
-        }
+    }
 }
