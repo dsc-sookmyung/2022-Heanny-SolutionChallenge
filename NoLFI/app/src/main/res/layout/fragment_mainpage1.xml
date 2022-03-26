@@ -10,10 +10,9 @@
         layout="@layout/maintopbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <include
-        app:layout_constraintTop_toBottomOf="@+id/main_tapbar"
-        android:id="@+id/main_content"
-        layout="@layout/mainpage_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/main_tapbar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
