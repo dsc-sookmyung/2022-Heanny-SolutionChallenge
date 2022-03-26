@@ -9,7 +9,13 @@
         <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_loginpage1.xml" value="0.1" />
         <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_mainpage1.xml" value="0.1" />
         <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_registerpage1.xml" value="0.1" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_writepage1.xml" value="0.22604166666666667" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_writepage2.xml" value="0.1816123188405797" />
         <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/registertopbar.xml" value="0.1046875" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_donate.xml" value="0.1" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_grouppurchase.xml" value="0.1" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_sell.xml" value="0.10714285714285714" />
+        <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_store_page.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/Android Project/SollutionChallenge2022/New_2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/menu/bottom_navigation.xml" value="0.1046875" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/activity_main.xml" value="0.17097264437689969" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/dialog.xml" value="0.1802536231884058" />
@@ -23,8 +29,19 @@
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_writepage2.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/fragment_writepage3.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/grouppurchasetopbar.xml" value="0.2046875" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/main_item_recyclerview.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/mainpage_content.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/mainpage_content2.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/mainpage_content3.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/maintopbar1.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/maintopbar2.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/maintopbar3.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/mypagetopbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/recycler_view.xml" value="0.2015625" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/selltopbar.xml" value="0.2046875" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/storeprofile_tab1.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/storeprofile_tab2.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/storeprofile_tab3.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_donate.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_grouppurchase.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/khapp/Desktop/mygithub/2022-NoLFI-SolutionChallenge/NoLFI/app/src/main/res/layout/sub_sell.xml" value="0.17806484295845998" />
@@ -34,7 +51,6 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
-
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -10,11 +10,15 @@ public class UserAccount {
     private String emailId;    // 이메일 아이디
     private String password;   // 비밀번호
 
-    private Boolean status;    // store vs customer.
+    // private Boolean status;    // store vs customer.
     private String nickname;
     private String address;
     private String category;
     private String getWhose;
+
+    // public Boolean getStatus() { return status; }
+    // public void setStatus(Boolean status) { this.status = status; }
+
 
     public UserAccount() {}
 
