@@ -51,7 +51,7 @@ By using NoLFI, you can reduce the cost of food waste, and you can receive fresh
 <br/><br/>
 
 ## 🙆‍♀ Team Member 
-|👑 Jinyoung Kim<br/>([@zhenying2](https://github.com/zhenying2))|Jueun Kim<br/>([@Jueunkim429](https://github.com/Jueunkim429))|Kyungmin Lee<br/>([@kyungminlee-12](https://github.com/kyungminlee-12))|Yewon Kang<br/>([@dolylupec](https://github.com/dolylupec))|
+|Jinyoung Kim<br/>([@zhenying2](https://github.com/zhenying2))|Jueun Kim<br/>([@Jueunkim429](https://github.com/Jueunkim429))|Kyungmin Lee<br/>([@kyungminlee-12](https://github.com/kyungminlee-12))|Yewon Kang<br/>([@dolylupec](https://github.com/dolylupec))|
 |:----------:|:----------:|:----------:|:----------:|
 |Project Lead<br/>Developer<br/>Project Manager|Developer<br/>Project Manager|Developer<br/>Project Manager|Project Manager|
 |![](https://github.com/zhenying2.png)|![](https://github.com/Jueunkim429.png)|![](https://github.com/kyungminlee-12.png)|![](https://github.com/dolylupec.png)|
