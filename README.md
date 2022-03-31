@@ -21,6 +21,8 @@ By using NoLFI, you can reduce the cost of food waste, and you can receive fresh
 <br/><br/>
 
 ## 📽 Demo video
+
+[![NoLFI](https://user-images.githubusercontent.com/77235677/160967028-4e80ee7d-a659-4294-945c-1f04e5e32781.png)](https://youtu.be/dMaIThrZD2k)
 <br/><br/>
 
 ## ✨ Feature introduction
